@@ -21,9 +21,14 @@
     </a-form>
   </a-modal>
   <div class="tag-container">
-    <a-tag class="tag-item" v-for="tag in tagList" :key="tag.tagValue" closable @close="()=>handleClose(tag.tagValue)"><span class="txt">{{
-      tag.tagName
-    }}</span></a-tag>
+    <a-tag
+      class="tag-item"
+      v-for="tag in tagList"
+      :key="tag.tagValue"
+      closable
+      @close="() => handleClose(tag.tagValue)"
+      ><span class="txt">{{ tag.tagName }}</span></a-tag
+    >
   </div>
   <a href="http://localhost:3000/view">view</a>
 </template>
@@ -53,6 +58,8 @@ export default defineComponent({
     const visible = ref(false);
     const formRef = ref();
 
+    const { tagList, getTagData } = useTag();
+
     const formValue = reactive({
       tagName: "",
     });
@@ -64,7 +71,7 @@ export default defineComponent({
             message.success("创建成功");
             visible.value = false;
             getTagData();
-            formValue.tagName = ""
+            formValue.tagName = "";
           } else {
             message.error("res");
           }
@@ -72,17 +79,14 @@ export default defineComponent({
       });
     };
 
-    const { tagList, getTagData } = useTag();
-
-
     const handleClose = (tagValue: number) => {
-      tagApi.deletTag({id: tagValue}).then((res:any) => {
-        if(res.code === 200) {
-          message.success('删除成功')
-          getTagData()
+      tagApi.deletTag({ id: tagValue }).then((res: any) => {
+        if (res.code === 200) {
+          message.success("删除成功");
+          getTagData();
         }
-      })
-    }
+      });
+    };
 
     return {
       visible,
@@ -90,7 +94,7 @@ export default defineComponent({
       formRef,
       handleOk,
       tagList,
-      handleClose
+      handleClose,
     };
   },
 });

@@ -1,15 +1,15 @@
 <!--
  * @Author: Mia
  * @Date: 2021-11-05 13:36:15
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-04-27 14:03:25
+ * @LastEditors: Mia
+ * @LastEditTime: 2023-06-09 16:22:00
  * @Description:
 -->
 <template>
   <a-button type="primary" @click="showModal">新增</a-button>
   <a-modal
     :visible="visible"
-    title="Basic Modal"
+    title="新增图书"
     @ok="handleOk"
     @cancel="closeModal"
     okText="确认"
@@ -35,13 +35,15 @@
     <a-table-column key="genre" title="类型" data-index="genreName">
       <template #default="{ text: genreName }">
         <span>
-          <a-tag v-for="tag in genreName" :key="tag" color="blue">{{ tag }}</a-tag>
+          <a-tag v-for="tag in genreName" :key="tag" color="blue">{{
+            tag
+          }}</a-tag>
         </span>
       </template>
     </a-table-column>
     <a-table-column key="image_url" title="图片链接" data-index="image_url">
-      <template #default="{text: img_url}">
-        <a :href="img_url">{{img_url}}</a>
+      <template #default="{ text: img_url }">
+        <a :href="img_url">{{ img_url }}</a>
       </template>
     </a-table-column>
     <a-table-column key="view_url" title="查看链接" data-index="view_url" />
@@ -66,7 +68,7 @@
     <a-table-column key="create_date" title="CreateDate">
       <template #default="{ record }">
         <span>
-          {{ proxy.$moment(record.create_date).format("YYYY-DD-MM HH:mm") }}
+          {{ proxy.$moment(record.create_date).format("YYYY-MM-DD HH:mm:ss") }}
         </span>
       </template>
     </a-table-column>
@@ -165,7 +167,7 @@ export default {
     const detail = ref();
     const handleEdit = (id) => {
       bookApi.getBookDetail({ id: id }).then((res) => {
-        res.data.genre = res.data.genre.map(item => Number(item))
+        res.data.genre = res.data.genre.map((item) => Number(item));
         detail.value = res.data;
         visible.value = true;
         isEdit.value = true;

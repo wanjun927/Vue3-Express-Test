@@ -1,13 +1,13 @@
 <!--
  * @Author: Mia
  * @Date: 2021-10-29 10:17:20
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-04-25 13:14:13
+ * @LastEditors: Mia
+ * @LastEditTime: 2023-06-09 16:24:28
  * @Description:
 -->
 <template>
   <div>
-    <a-button @click="handleCreateUser">新增用户</a-button>
+    <a-button @click="handleCreateUser" type="primary">新增用户</a-button>
     <a-table :data-source="userinfo" rowKey="_id">
       <a-table-column key="name" title="Name" data-index="name" />
       <a-table-column key="pwd" title="Password" data-index="pwd" />

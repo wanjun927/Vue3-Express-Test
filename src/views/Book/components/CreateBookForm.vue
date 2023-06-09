@@ -1,12 +1,12 @@
 <!--
  * @Author: Mia
  * @Date: 2021-11-05 14:36:33
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-04-27 13:54:51
+ * @LastEditors: Mia
+ * @LastEditTime: 2023-06-09 16:19:27
  * @Description: 新增书籍 / 编辑书籍页
 -->
 <template>
-  <a-form :rules="rules" ref="modalFormRef" :model="modelRef">
+  <a-form :rules="rules" ref="modalFormRef" :model="modelRef" :label-col="{span: 4}" :wrapper-col="{span: 20}">
     <a-form-item label="书名" name="title" :rules="rules.title">
       <a-input v-model:value="modelRef.title" placeholder="请输入名称"></a-input>
     </a-form-item>
